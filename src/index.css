@@ -1,18 +1,21 @@
 :root {
-  --bg: #f4f5f7;
-  --text: #1b1f27;
-  --text-muted: #5b6474;
-  --border: #e3e6ec;
-  --radius: 12px;
-  --hover-bg: rgba(16, 24, 40, 0.06);
-  --danger: #d92d20;
-  --danger-bg: rgba(217, 45, 32, 0.1);
-  --success: #12b76a;
-  --success-bg: rgba(18, 183, 106, 0.12);
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --surface: #fff;
-  --shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 4px 12px rgba(16, 24, 40, 0.06);
+  --bg: #f8ecd4;
+  --panel: #fbf5e8;
+  --tan: #edd7b4;
+  --line: #d5c2a2;
+  --text: #171717;
+  --muted: #737373;
+  --red: #a01c2c;
+  --mint: #98fb98;
+  --blue: #1447e6;
+  --teal: #00695f;
+  --amber: #b45309;
+  --radius: 0.625rem;
+  --mono: "Source Code Pro", ui-monospace, Menlo, Consolas, monospace;
+  --serif: var(--mono);
+  --sans: var(--mono);
+  --hover: rgba(23, 23, 23, 0.08);
+  --red-bg: rgba(160, 28, 44, 0.1);
 }
 
 * {
@@ -22,10 +25,18 @@
 }
 
 body {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: var(--sans);
+  line-height: 1.6;
   color: var(--text);
   background: var(--bg);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--serif);
+  line-height: 1.2;
 }
 
 #logo {
@@ -47,8 +58,8 @@ body {
   align-items: center;
   gap: 1rem;
   padding: 0.75rem clamp(1rem, 4vw, 3rem);
-  background-color: var(--surface);
-  border-bottom: 1px solid var(--border);
+  background: var(--tan);
+  border-bottom: 1px solid var(--line);
 }
 
 .content {
@@ -61,20 +72,24 @@ body {
 
 .content h2 {
   margin-bottom: 1rem;
+  font-size: 2.25rem;
 }
 
 .app > footer {
   padding: 1.5rem 1rem;
-  border-top: 1px solid var(--border);
-  color: var(--text-muted);
+  background: var(--tan);
+  border-top: 1px solid var(--line);
+  color: var(--muted);
   font-size: 0.875rem;
   text-align: center;
 }
 
 .app > footer a {
   margin-left: 0.25rem;
-  color: var(--accent);
+  color: var(--red);
 }
+
+/* ---------- buttons ---------- */
 
 button {
   all: unset;
@@ -91,7 +106,7 @@ button {
 }
 
 button:hover {
-  background-color: var(--hover-bg);
+  background-color: var(--hover);
 }
 
 button:focus-visible {
@@ -109,25 +124,10 @@ button:hover .fa-trash-can {
   font-weight: 900;
 }
 
-.resolve-btn {
-  width: auto;
-  height: auto;
-  padding: 0.35rem 0.75rem;
-  border: 1px solid var(--border);
-  font-size: 0.875rem;
-}
-
-.resolve-btn:hover {
-  color: var(--success);
-  background-color: var(--success-bg);
-}
-
 button:has(.fa-trash-can):hover {
-  color: var(--danger);
-  background-color: var(--danger-bg);
+  color: var(--red);
+  background-color: var(--red-bg);
 }
-
-/* ---------- primary (text) button ---------- */
 
 .btn-primary {
   display: inline-flex;
@@ -138,15 +138,15 @@ button:has(.fa-trash-can):hover {
   height: auto;
   padding: 0.5rem 1rem;
   border-radius: var(--radius);
-  background-color: var(--accent);
-  color: #fff;
+  background-color: var(--text);
+  color: #fafafa;
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-hover);
+  background-color: var(--red);
 }
 
 .btn-primary:disabled {
@@ -158,48 +158,64 @@ button:has(.fa-trash-can):hover {
   font-size: 0.875rem;
 }
 
+.resolve-btn {
+  width: auto;
+  height: auto;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--line);
+  font-size: 0.875rem;
+}
+
+.resolve-btn:hover {
+  color: var(--text);
+  background-color: var(--mint);
+}
+
 /* ---------- board ---------- */
 
 .content section {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
 }
 
 .content section h3 {
-  margin-bottom: 0.5rem;
-  color: var(--text-muted);
-  font-size: 0.875rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid var(--line);
+  font-size: 1.5rem;
 }
 
 .content section ul {
+  --cols: 3;
   display: grid;
-  gap: 0.5rem;
+  gap: 8px;
+  grid-template-columns: repeat(var(--cols), 1fr);
   list-style: none;
 }
 
 .ticket-row {
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.875rem 1rem;
-  background-color: var(--surface);
-  border: 1px solid var(--border);
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 120px;
+  padding: 12px;
+  background: var(--panel);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  overflow: hidden;
 }
 
 .ticket-row article {
-  flex: 1;
   min-width: 0;
 }
 
 .row-title {
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 
 .ticket-row p {
-  color: var(--text-muted);
+  margin-top: 2px;
+  color: var(--muted);
   font-size: 0.875rem;
   overflow-wrap: anywhere;
 }
@@ -209,12 +225,19 @@ button:has(.fa-trash-can):hover {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
-  margin-top: 0.25rem;
-  color: var(--text-muted);
-  font-size: 0.8125rem;
+  margin-top: 8px;
+  color: var(--red);
+  font-size: 0.75rem;
+}
+
+.ticket-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .ticket-row.is-resolved {
+  border-style: dashed;
   opacity: 0.7;
 }
 
@@ -223,32 +246,31 @@ button:has(.fa-trash-can):hover {
 }
 
 .badge {
-  padding: 0.05rem 0.5rem;
+  padding: 0 0.5rem;
   border-radius: 999px;
-  background-color: var(--hover-bg);
-  font-size: 0.75rem;
+  background: var(--hover);
   font-weight: 600;
   text-transform: capitalize;
 }
 
 .badge-bug {
-  background-color: var(--danger-bg);
-  color: var(--danger);
+  background: var(--red-bg);
+  color: var(--red);
 }
 
 .badge-feature {
-  background-color: rgba(37, 99, 235, 0.12);
-  color: #1d4ed8;
+  background: rgba(20, 71, 230, 0.1);
+  color: var(--blue);
 }
 
 .badge-question {
-  background-color: rgba(247, 144, 9, 0.16);
-  color: #b54708;
+  background: rgba(249, 156, 0, 0.18);
+  color: var(--amber);
 }
 
 .badge-docs {
-  background-color: rgba(105, 65, 198, 0.12);
-  color: #6941c6;
+  background: rgba(0, 149, 136, 0.14);
+  color: var(--teal);
 }
 
 /* ---------- filters ---------- */
@@ -259,8 +281,8 @@ button:has(.fa-trash-can):hover {
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem;
-  background-color: var(--surface);
-  border: 1px solid var(--border);
+  background: var(--panel);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
 }
 
@@ -273,82 +295,15 @@ button:has(.fa-trash-can):hover {
   cursor: pointer;
 }
 
+.filter-row input[type="checkbox"] {
+  accent-color: var(--red);
+}
+
 .filter-row .btn-primary {
   margin-left: auto;
 }
 
-/* ---------- new ticket form ---------- */
-
-.ticket-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.375rem;
-  max-width: 32rem;
-  margin: 0 auto;
-  padding: 1.5rem;
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-.ticket-form label {
-  margin-top: 0.5rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-}
-
-.ticket-form input,
-.ticket-form textarea,
-.ticket-form select {
-  padding: 0.5rem 0.75rem;
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  color: inherit;
-  font: inherit;
-}
-
-.ticket-form textarea {
-  min-height: 6rem;
-  resize: vertical;
-}
-
-.ticket-form input:focus,
-.ticket-form textarea:focus,
-.ticket-form select:focus {
-  border-color: var(--accent);
-  outline: 2px solid rgba(37, 99, 235, 0.25);
-}
-
-.ticket-form .btn-primary {
-  align-self: flex-start;
-  margin-top: 1rem;
-}
-
-.ticket-form-btn-row {
-  display: flex;
-  flex-direction: row;
-  gap: 4px;
-}
-
-/* ---------- 404 ---------- */
-
-.not-found {
-  text-align: center;
-}
-
-.not-found img {
-  width: 24rem;
-  max-width: 100%;
-  margin-top: 1rem;
-}
-
-@media (max-width: 40rem) {
-  .ticket-row {
-    flex-wrap: wrap;
-  }
-}
+/* ---------- dropdown ---------- */
 
 .dropdown {
   position: relative;
@@ -359,8 +314,8 @@ button:has(.fa-trash-can):hover {
   width: auto;
   height: auto;
   padding: 0.4rem 0.75rem;
-  border: 1px solid var(--border);
-  background-color: #fff;
+  border: 1px solid var(--line);
+  background: var(--bg);
 }
 
 .dropdown-toggle i {
@@ -374,17 +329,19 @@ button:has(.fa-trash-can):hover {
   z-index: 10;
   min-width: 14rem;
   padding: 0.5rem;
-  border: 1px solid var(--border);
+  background: var(--panel);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  background-color: #fff;
-  box-shadow: var(--shadow);
+  box-shadow: 0 4px 12px rgba(23, 23, 23, 0.12);
 }
 
 .dropdown-panel .search-bar {
   width: 100%;
   padding: 0.35rem 0.5rem;
-  border: 1px solid var(--border);
+  background: #fff;
+  border: 1px solid var(--line);
   border-radius: 8px;
+  font: inherit;
 }
 
 .dropdown-list {
@@ -405,10 +362,86 @@ button:has(.fa-trash-can):hover {
 
 .dropdown-option[aria-current="true"] {
   font-weight: 600;
-  background-color: var(--hover-bg);
+  background: var(--tan);
 }
 
 .dropdown-empty {
   padding: 0.35rem 0.5rem;
-  color: var(--text-muted);
+  color: var(--muted);
+}
+
+/* ---------- new ticket form ---------- */
+
+.ticket-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  max-width: 32rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.ticket-form label {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.ticket-form input,
+.ticket-form textarea,
+.ticket-form select {
+  padding: 0.5rem 0.75rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: inherit;
+  font: inherit;
+}
+
+.ticket-form textarea {
+  min-height: 6rem;
+  resize: vertical;
+}
+
+.ticket-form input:focus,
+.ticket-form textarea:focus,
+.ticket-form select:focus {
+  border-color: var(--red);
+  outline: 2px solid rgba(160, 28, 44, 0.25);
+}
+
+.ticket-form-btn-row {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-top: 1rem;
+}
+
+/* ---------- 404 ---------- */
+
+.not-found {
+  text-align: center;
+}
+
+.not-found img {
+  width: 24rem;
+  max-width: 100%;
+  margin: 1rem 0;
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 1000px) {
+  .content section ul {
+    --cols: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .content section ul {
+    --cols: 1;
+  }
 }

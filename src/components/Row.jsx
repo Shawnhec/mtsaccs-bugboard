@@ -9,19 +9,21 @@ const Row = ({ ticket, onToggleTicket, onDeleteTicket }) => {
           <span>by {ticket.author}</span>
         </div>
       </article>
-      <button
-        className="resolve-btn"
-        onClick={() => onToggleTicket(ticket.id, ticket.is_resolved)}
-      >
-        {ticket.is_resolved ? "Reopen" : "Resolve"}
-      </button>
-      <button
-        title="Delete ticket"
-        aria-label="Delete ticket"
-        onClick={() => onDeleteTicket(ticket.id)}
-      >
-        <i className="fa-regular fa-trash-can" aria-hidden="true"></i>
-      </button>
+      <div className="ticket-actions">
+        <button
+          className="resolve-btn"
+          onClick={() => onToggleTicket(ticket.id, ticket.is_resolved)}
+        >
+          {ticket.is_resolved ? "Reopen" : "Resolve"}
+        </button>
+        <button
+          title="Delete ticket"
+          aria-label="Delete ticket"
+          onClick={() => onDeleteTicket(ticket.id)}
+        >
+          <i className="fa-regular fa-trash-can" aria-hidden="true"></i>
+        </button>
+      </div>
     </li>
   );
 };
